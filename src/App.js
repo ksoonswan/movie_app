@@ -1,48 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { HashRouter, Route } from "react-router-dom";
+import About from "./routes/About";
+import Home from "./routes/Home";
+import Detail from "./components/Detail";
+import Navigation from "./Navigation";
+import "./App.css";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("hello contructor");
-  }
-
-  state = {
-    count: 0,
-  };
-
-  add = () => {
-    console.log("add");
-    this.setState((current) => ({ count: current.count + 1 }));
-  };
-
-  minus = () => {
-    console.log("minus");
-    this.setState((current) => ({ count: current.count - 1 }));
-  };
-
-  componentDidMount() {
-    console.log("componentDidMount 컴포넌트가 태어날때 사용");
-  }
-
-  componentDidUpdate() {
-    console.log("componentDidUpdate 컴포넌트가 업데이트될때 사용");
-  }
-
-  componentWillMount() {
-    console.log("componentWillMount는 컴포넌트가 사라질때 작동");
-  }
-
-  render() {
-    console.log("render");
-    return (
-      <div>
-        <h1>The number is: {this.state.count}</h1>
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.minus}>Minus</button>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <HashRouter>
+      <Navigation />
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/About" exact={true} component={About} />
+      <Route path="/movie/:id" exact={true} component={Detail} />
+    </HashRouter>
+  );
 }
 
 export default App;
